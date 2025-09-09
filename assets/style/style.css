@@ -32,18 +32,17 @@
 
 @font-face {
     font-family : "G";
-    src         : url('assets\font\Aptos.ttf') format("woff2");
+    src         : url('fonts/Geist[wght].woff2') format("woff2");
     font-weight : 100 900;
     font-style  : normal;
 }
 
 @font-face {
     font-family : "GM";
-    src         : url('assets\font\Aptos.ttf') format("woff2");
+    src         : url('fonts/GeistMono[wght].woff2') format("woff2");
     font-weight : 100 900;
     font-style  : normal;
 }
-
 
 :root {
     
@@ -72,31 +71,31 @@
 body {
     display               : grid;
     grid-template-columns : 1fr;
-    grid-template-areas   : "opening" "header" "about" "portfolio" "footer";
+    grid-template-areas   : "opening" "header" "about" "proheader" "portfolio" "footer";
 
     @media (width > 750px) {
         grid-template-columns : 1fr 1fr;
-        grid-template-areas   : "opening opening" "header about" "footer about" "portfolio portfolio";
+        grid-template-areas   : "opening opening" "header about" "footer about" "proheader proheader" "portfolio portfolio";
     }
 
-    @media (width > 1000px) {
+    /* @media (width > 1000px) {
         display               : grid;
         grid-template-columns : auto 3fr 2fr;
         grid-template-areas   : "opening opening opening" "header about portfolio" "footer about portfolio" ". about portfolio";
-    }
+    } */
 
     /* @media (width > 1000px) {
         grid-template-columns : auto 2fr 2fr;
         grid-template-areas   : "opening opening opening" "header about portfolio" "footer about portfolio" ". about portfolio";
     } */
 
-    @media (width > 1300px) {
+    /* @media (width > 1300px) {
          grid-template-columns : 1fr 2fr 3fr;
     }
 
     @media (width > 1600px) {
         grid-template-columns : 2fr 3fr 5fr;
-    }
+    } */
 }
 }
 
@@ -116,7 +115,7 @@ body {
 }/* UI Elements *//* The Opening background video */
 .opening {
     grid-area    : opening;
-    position     : sticky;
+    /* position     : sticky; */
     top          : 0;
     aspect-ratio : 1;
     width        : 100%;
@@ -154,11 +153,11 @@ body {
         aspect-ratio: unset;
     }
 
-    @media (width > 1000px) {
+    /* @media (width > 1000px) {
         height   : 50svh;
         position : sticky;
         top      : 0;
-    }
+    } */
 
     a {
         color : var(--text-alt);
@@ -180,13 +179,14 @@ h2 {
 .about {
     position   : relative;
     border-top : 1px solid var(--border);
+    border-bottom : 1px solid var(--border);
     padding : 1.5rlh;
     grid-area : about;
     min-height : 50svh;
 
     @media (width > 1000px) { 
-        height     : 100svh;
-        position   : sticky;
+        height     : 110svh;
+        /* position   : sticky; */
         top        : 0;
         overflow: visible;
     }
@@ -204,25 +204,26 @@ h2 {
         }
     }
 }
+
 .portfolio {
     border-top : 1px solid var(--border);
     padding    : 0;
     grid-area  : portfolio;
 
-    @media (width > 1800px) {
+    @media (width > 1000px) {
          display : grid;
-         grid-template-columns: 1fr 1fr;
+         grid-template-columns:  repeat(2,minmax(0,1fr));
     }
 }
 .project {
     padding       : 1.5rlh;
     border-bottom : 1px solid var(--border);
 }
-@media (width > 1800px) {
+/* @media (width > 1000px) {
     .project:nth-child(odd) {
         border-right : 1px solid var(--border);
     }
-}
+} */
 .project-url {
     display : block;
     position : relative;
@@ -232,7 +233,7 @@ h2 {
     }
 
     &::after {
-        content: "VISIT";
+        content: "VISIT GITHUB PAGE";
         position : absolute;
         inset : -1.5rlh;
         place-content: center;
@@ -249,10 +250,21 @@ h2 {
 .project-screenshot {
     display    : block;
     width      : 100%;
+    aspect-ratio: 16 / 10;
+    object-fit  : fill;
     height     : auto; /* or any fixed value */
     margin     : auto;
     transition : filter 500ms ease-in-out;
 }
+
+.project-header {  
+  margin-top: 2rem;
+  text-align: center;
+  margin-bottom: 2rem; /* space before grid */
+  display: block;
+  grid-area  : proheader;
+}
+
 .project-info {
     margin-bottom : 1.5rlh;
     a {
@@ -267,6 +279,7 @@ h2 {
 .footer {
     grid-area : footer;
     border-top : 1px solid var(--border);
+    border-bottom : 1px solid var(--border);
     padding : 1.5rlh;
     display: flex;
     align-items: flex-end;
@@ -279,11 +292,11 @@ h2 {
         justify-content: flex-start;
     }
 
-    @media (width > 1000px) { 
+    /* @media (width > 1000px) { 
         position : sticky;
         top      : 50svh;
         height   : 50svh;
-    }
+    } */
 }/* Reusable Components *//* Content Goes Here */
 .img {
     display : block;
@@ -300,7 +313,8 @@ h2 {
 
 .timeline-item {
   position: relative;
-  margin: 17.5px;
+  margin: auto;
+  padding-bottom: 20px;
 }
 
 .timeline-date {

@@ -473,3 +473,11 @@ mark {
   margin-right: auto;
 }
 
+.resume-btn {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+

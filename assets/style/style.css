@@ -398,32 +398,9 @@ mark {
     }
 }
 
-/* di */
-.profile-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.profile-text {
-  max-width: 80%;
-}
-
-.profile-photo img {
-  width: 75px;
-  height: 75px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  object-fit: cover;
-}
-
-.about2 {
- margin-top: auto;
-}
-
 /* dih */
 .education {
-  margin-top: 5%;
+  margin-top: auto;
   padding: auto;
 }
 
@@ -438,7 +415,7 @@ mark {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.25rem;
+  margin-bottom: 2rem;
   margin-top: 0.5rem;
 }
 
@@ -480,5 +457,35 @@ mark {
   font-weight: bold;
 }
 
+/* dih2 */
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.profile-left {
+  margin-top: 10px;
+  flex: 1;
+}
+
+.profile-right img {
+  margin-top: 10px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
 
 

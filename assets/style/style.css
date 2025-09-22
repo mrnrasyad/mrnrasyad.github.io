@@ -123,16 +123,17 @@ body {
     @media (width > 750px) {
         aspect-ratio : unset;
         height       : 50svh;
+        opacity: .20;
     }
 
-    &::after {
+/*     &::after {
         content : "";
         position : absolute;
         inset : 0;
         background: var(--bg);
         backdrop-filter: blur(999px);
         opacity: .70;
-    }
+    } */
 }
 
 .opening-video {
@@ -471,3 +472,4 @@ mark {
   white-space: nowrap;
   margin-right: 2%  ;
 }
+

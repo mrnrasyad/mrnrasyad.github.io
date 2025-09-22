@@ -119,20 +119,21 @@ body {
     top          : 0;
     aspect-ratio : 1;
     width        : 100%;
+    opacity: .40;
 
     @media (width > 750px) {
         aspect-ratio : unset;
         height       : 50svh;
     }
 
-    &::after {
+    /* &::after {
         content : "";
         position : absolute;
         inset : 0;
         background: var(--bg);
         backdrop-filter: blur(999px);
         opacity: .70;
-    }
+    } */
 }
 
 .opening-video {

@@ -119,14 +119,14 @@ body {
     top          : 0;
     aspect-ratio : 1;
     width        : 100%;
+    opacity: .40;
 
     @media (width > 750px) {
         aspect-ratio : unset;
         height       : 50svh;
-        opacity: .20;
     }
 
-/*     &::after {
+    /* &::after {
         content : "";
         position : absolute;
         inset : 0;
@@ -472,4 +472,3 @@ mark {
   white-space: nowrap;
   margin-right: 2%  ;
 }
-

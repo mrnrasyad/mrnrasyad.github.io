@@ -293,6 +293,7 @@ h2 {
         aspect-ratio: unset;
         justify-content: flex-start;
         height   : 100%;
+
     }
 
     /* @media (width > 1000px) { 
@@ -402,18 +403,17 @@ mark {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
 }
 
 .profile-text {
-  max-width: 70%;
+  max-width: 80%;
 }
 
 .profile-photo img {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
   object-fit: cover;
 }
 
@@ -474,9 +474,9 @@ mark {
 }
 
 .resume-btn {
+  margin-top: 3px;
   display: inline-block;
-  color: white;
-  text-decoration: none;
+  color: #aaa; 
   font-weight: bold;
 }
 

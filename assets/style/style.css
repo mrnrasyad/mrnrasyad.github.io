@@ -470,5 +470,6 @@ mark {
   font-size: 0.9rem;
   color: var(--text-alt);
   white-space: nowrap;
-  margin-right: 2%  ;
+  margin-right: auto;
 }
+

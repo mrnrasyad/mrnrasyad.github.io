@@ -1,13 +1,711 @@
-<!DOCTYPE HTML>
-<html lang="en" style="min-height:100%;">
-<meta http-equiv="refresh" content="0; URL=https://portfolio-raihan.notion.site/RAIHAN-PORTFOLIO-2bdedaae212d80cf990bf9c2efec9626?source=copy_link"> <!-- edit this line -->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashcroft — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #FFFFFF;
+      --surface:  #F4F4F4;
+      --ink:      #0A0A0A;
+      --ink-2:    #333333;
+      --ink-3:    #888888;
+      --line:     rgba(0,0,0,0.10);
+      --accent:   #0A0A0A;
+      --serif:    'DM Serif Display', Georgia, serif;
+      --mono:     'DM Mono', monospace;
+      --sans:     'DM Sans', sans-serif;
+      --max:      760px;
+      --gap:      clamp(2.5rem, 6vw, 4.5rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 1rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── LAYOUT ── */
+    .wrapper {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 clamp(1.25rem, 5vw, 2rem);
+    }
+    section {
+      padding: var(--gap) 0;
+      border-top: 1px solid var(--line);
+    }
+    section:first-of-type { border-top: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 3.25rem;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: .78rem;
+      letter-spacing: .14em;
+      color: var(--ink);
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* Desktop links */
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* Hamburger button */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 2rem;
+      height: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .hamburger span {
+      display: block;
+      height: 1.5px;
+      background: var(--ink);
+      transition: transform .25s, opacity .25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 3.25rem;
+      left: 0; right: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      z-index: 99;
+      padding: 1rem 0 1.25rem;
+    }
+    .nav-drawer.open { display: block; }
+    .nav-drawer ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-drawer ul li a {
+      display: block;
+      padding: .75rem clamp(1.25rem, 5vw, 2rem);
+      font-family: var(--mono);
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      border-bottom: 1px solid var(--line);
+      transition: color .2s, background .2s;
+    }
+    .nav-drawer ul li:last-child a { border-bottom: none; }
+    .nav-drawer ul li a:hover { color: var(--ink); background: var(--surface); }
+
+    @media (max-width: 560px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ── ABOUT ── */
+    #about { padding-top: clamp(2.5rem, 7vw, 5rem); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .avatar-wrap {
+      position: relative;
+      width: 100px;
+      border: 1.5px solid var(--ink);
+      flex-shrink: 0;
+    }
+    /* .avatar-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 5px -5px -5px 5px;
+      border: 1.5px solid var(--ink);
+      z-index: 0;
+    } */
+    .avatar {
+      position: relative;
+      z-index: 1;
+      width: 100px;
+      height: 130px;       /* taller to fit portrait photo */
+      object-fit: cover;
+      object-position: center top;   /* anchor to top so face stays visible */
+      display: block;
+      filter: grayscale(100%);
+    }
+    .about-title {
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: .5rem;
+    }
+    .about-name {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 3.8vw, 2rem);
+      line-height: 1.12;
+      letter-spacing: -.02em;
+      margin-bottom: .85rem;
+    }
+    .about-bio {
+      font-size: .92rem;
+      color: var(--ink-2);
+      max-width: 52ch;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+    .contact-row {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      align-items: center;
+    }
+    .contact-chip {
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .06em;
+      color: var(--ink-2);
+      border: 1px solid var(--line);
+      padding: .28rem .7rem;
+      background: var(--surface);
+      transition: border-color .2s, background .2s;
+    }
+    .contact-chip:hover { border-color: var(--ink); background: var(--ink); color: #fff; }
+
+    /* ── SECTION HEADER ── */
+    .sec-label {
+      font-family: var(--mono);
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: .5rem;
+    }
+    .sec-title {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      margin-bottom: 1.75rem;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: .2rem 1rem;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .edu-item:first-of-type { padding-top: 0; }
+    .edu-deg { font-size: .95rem; font-weight: 500; }
+    .edu-school { font-size: .84rem; color: var(--ink-3); margin-top: .1rem; }
+    .edu-year {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--ink-3);
+      white-space: nowrap;
+      padding-top: .1rem;
+    }
+    .edu-note {
+      grid-column: 1 / -1;
+      font-size: .8rem;
+      color: var(--ink-3);
+      margin-top: .3rem;
+      line-height: 1.6;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: .2rem 1rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .exp-item:first-of-type { padding-top: 0; }
+    .exp-role { font-size: .95rem; font-weight: 500; }
+    .exp-company { font-size: .84rem; color: var(--ink-3); margin-top: .1rem; }
+    .exp-period {
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--ink-3);
+      white-space: nowrap;
+      text-align: right;
+      padding-top: .1rem;
+    }
+    .exp-bullets {
+      grid-column: 1 / -1;
+      margin-top: .6rem;
+      list-style: none;
+      padding: 0;
+    }
+    .exp-bullets li {
+      font-size: .86rem;
+      color: var(--ink-2);
+      font-weight: 300;
+      line-height: 1.65;
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: .28rem;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--ink-3);
+      font-size: .65rem;
+      top: .22em;
+    }
+
+    /* ── ACHIEVEMENTS ── */
+    .ach-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .ach-card {
+      background: var(--bg);
+      padding: 1.35rem;
+      transition: background .2s;
+    }
+    .ach-card:hover { background: var(--surface); }
+    .ach-icon {
+      font-family: var(--mono);
+      font-size: .65rem;
+      letter-spacing: .1em;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+    .ach-title {
+      font-weight: 500;
+      font-size: .9rem;
+      margin-bottom: .3rem;
+      line-height: 1.4;
+    }
+    .ach-desc {
+      font-size: .8rem;
+      color: var(--ink-3);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: .4rem 1rem;
+      padding: .95rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .cert-item:first-child { padding-top: 0; }
+    .cert-name { font-size: .92rem; font-weight: 500; }
+    .cert-issuer { font-size: .8rem; color: var(--ink-3); margin-top: .12rem; }
+    .cert-year {
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: var(--ink-3);
+      white-space: nowrap;
+    }
+    .cert-tag { grid-column: 1 / -1; margin-top: .3rem; }
+    .tag {
+      font-family: var(--mono);
+      font-size: .6rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      border: 1px solid var(--line);
+      padding: .12rem .45rem;
+    }
+
+    /* ── PROJECTS ── */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    a.proj-card {
+      display: block;
+      border: 1px solid var(--line);
+      padding: 1.35rem;
+      background: var(--bg);
+      color: inherit;
+      text-decoration: none;
+      transition: background .2s, border-color .2s;
+      position: relative;
+    }
+    a.proj-card:hover {
+      background: var(--surface);
+      border-color: var(--ink);
+    }
+    .proj-arrow {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.1rem;
+      font-size: .8rem;
+      color: var(--ink-3);
+      transition: color .2s, transform .2s;
+    }
+    a.proj-card:hover .proj-arrow {
+      color: var(--ink);
+      transform: translate(2px, -2px);
+    }
+    .proj-lang {
+      font-family: var(--mono);
+      font-size: .62rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: .55rem;
+    }
+    .proj-name {
+      font-weight: 500;
+      font-size: .95rem;
+      margin-bottom: .35rem;
+      line-height: 1.35;
+      padding-right: 1.5rem;
+    }
+    .proj-desc {
+      font-size: .8rem;
+      color: var(--ink-3);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+    .proj-tags {
+      margin-top: .75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3rem;
+    }
+    .proj-tag {
+      font-family: var(--mono);
+      font-size: .58rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      border: 1px solid var(--line);
+      padding: .1rem .4rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.75rem 0;
+    }
+    footer .wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: .65rem;
+      color: var(--ink-3);
+      letter-spacing: .08em;
+    }
+    .footer-back {
+      font-family: var(--mono);
+      font-size: .65rem;
+      color: var(--ink-3);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color .2s;
+    }
+    .footer-back:hover { color: var(--ink); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp .5s ease both; }
+    .fade-up:nth-child(2) { animation-delay: .12s; }
+
+    /* ── MOBILE LAYOUT ── */
+    @media (max-width: 480px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .avatar-wrap { margin: 0 auto; }
+      .exp-item { grid-template-columns: 1fr; }
+      .exp-period { text-align: left; }
+      .edu-item { grid-template-columns: 1fr; }
+      .edu-year { margin-top: .1rem; }
+    }
+  </style>
 </head>
+<body>
 
-<body style="background:black;">
-    <h1>Loading...</h1>
+  <!-- NAV -->
+  <nav>
+    <div class="wrapper">
+      <span class="nav-logo">Ashcroft</span>
+
+      <!-- Desktop -->
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certs</a></li>
+      </ul>
+
+      <!-- Hamburger -->
+      <button class="hamburger" id="menuBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="nav-drawer" id="drawer">
+    <ul>
+      <li><a href="#about"          onclick="closeMenu()">About</a></li>
+      <li><a href="#education"      onclick="closeMenu()">Education</a></li>
+      <li><a href="#experience"     onclick="closeMenu()">Experience</a></li>
+      <li><a href="#achievements"   onclick="closeMenu()">Achievements</a></li>
+      <li><a href="#projects"       onclick="closeMenu()">Projects</a></li>
+      <li><a href="#certifications" onclick="closeMenu()">Certifications</a></li>
+    </ul>
+  </div>
+
+  <main class="wrapper">
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="about-grid">
+
+        <div class="avatar-wrap">
+          <img class="avatar" src="x\x.png" alt="Yo" />
+        </div>
+
+        <div class="fade-up">
+          <p class="about-title">Data Analyst</p>
+          <h1 class="about-name">Muhammad Raihan Nur Rasyad</h1>
+          <p class="about-bio">
+           Bachelor's degree in Mathematics (GPA 3.81, Cum Laude) with experience in medium to large-scale data analysis projects (up to 100,000 rows). Experienced in using Python, SQL, Spreadsheets, and BI tools for turning raw data into insights and business recommendations. I am active at WorldQuant BRAIN, where I build quantitative alpha models. I also compete in data hackathons and develop end-to-end data analytics projects.
+          </p>
+          <div class="contact-row">
+            <a class="contact-chip" href="mailto:mraihannurrasyad@gmail.com">Gmail</a>
+            <a class="contact-chip" href="https://github.com/mrnrasyad" target="_blank">GitHub</a>
+            <a class="contact-chip" href="https://linkedin.com/in/mrnrasyad" target="_blank">LinkedIn</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <p class="sec-label">Background</p>
+      <h2 class="sec-title">Education</h2>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-deg">Bachelor of Science — Mathematics</div>
+          <div class="edu-school">Universitas Islam Negeri Sunan Gunung Djati Bandung, Indonesia</div>
+        </div>
+        <div class="edu-year">2021 — 2025</div>
+        <div class="edu-note">
+          Graduated with a 3.81 GPA (Cum Laude) and won a silver medal at the International Invention Competition for Young Muslim Scientists (IICYMS), organized by the Indonesian Young Scientist Association (IYSA) in 2023.
+        </div>
+      </div>
+
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <p class="sec-label">Work</p>
+      <h2 class="sec-title">Experience</h2>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-role">Research Consultant — Quantitative Alpha Development</div>
+          <div class="exp-company">WorldQuant BRAIN</div>
+        </div>
+        <div class="exp-period">Feb 2026 — Present · Remote</div>
+        <ul class="exp-bullets">
+          <li>Built 20+ predictive models from historical stock data, optimizing turnover to achieve a Sharpe ratio &gt; 1.0.</li>
+          <li>Secured 8th place (top 3%) among 274 participants in BRAIN Alphathon 2025 — Data Science Indonesia with a score of 26,967.</li>
+          <li>Adapt insights from academic literature (e.g., "101 Formulaic Alphas") into live expressions.</li>
+        </ul>
+      </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <p class="sec-label">Work</p>
+      <h2 class="sec-title">Selected Projects</h2>
+
+      <div class="proj-grid">
+
+        <a class="proj-card" href="https://github.com/mrnrasyad/Customer-Churn-Prediction-Model.git" target="_blank">
+          <span class="proj-arrow">↗</span>
+          <div class="proj-lang">Machine Learning</div>
+          <div class="proj-name">Customer Churn Prediction Model</div>
+          <div class="proj-desc">Processed and cleaned 100,000+ rows of transaction data, performed exploratory data analysis (EDA), built a logistic regression model with 76% accuracy, and identified the two most influential features.</div>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span>
+            <span class="proj-tag">FastAPI</span>
+            <span class="proj-tag">Ngrok</span>
+          </div>
+        </a>
+
+        <a class="proj-card" href="https://github.com/mrnrasyad/Retail-Sales-Performance-Analysis.git" target="_blank">
+          <span class="proj-arrow">↗</span>
+          <div class="proj-lang">Data Analyst</div>
+          <div class="proj-name">Retail Sales Performance Analysis</div>
+          <div class="proj-desc">Processed 50,000+ rows of data, created a dashboard and identified a revenue decline of 25.61% caused by customer activity as well as underperforming provinces and brands.</div>
+          <div class="proj-tags">
+            <span class="proj-tag">Python</span>
+            <span class="proj-tag">MSQL</span>
+            <span class="proj-tag">Tableau</span>
+          </div>
+        </a>
+
+        <a class="proj-card" href="https://github.com/yourusername/geographic-sales-dashboard" target="_blank">
+          <span class="proj-arrow">↗</span>
+          <div class="proj-lang">Data Analyst</div>
+          <div class="proj-name">Coffee Sales Performance Analysis</div>
+          <div class="proj-desc">Processed 1,000+ rows of data, created a dashboard and identified a profit decline of 42.3% along with the coffee product that had the largest contribution (36.15% of profit).</div>
+          <div class="proj-tags">
+            <span class="proj-tag">Google Sheets</span>
+            <span class="proj-tag">Looker Studio</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements">
+      <p class="sec-label">Recognition</p>
+      <h2 class="sec-title">Achievements</h2>
+
+      <div class="ach-grid">
+        <div class="ach-card">
+          <div class="ach-icon">3rd Place · 2026</div>
+          <div class="ach-title">DQLab Excel Hackathon Challenge</div>
+          <div class="ach-desc">Ranked 3rd out of 897 participants based on accuracy and time efficiency. Developing Excel solution for number-word normalization, and timezone handling.</div>
+        </div>
+        <div class="ach-card">
+          <div class="ach-icon">16th Place · 2025</div>
+          <div class="ach-title">DQLab Python Hackathon Challenge</div>
+          <div class="ach-desc">Ranked 16th out of 90 participants, with a maximum score of 100 and a best duration of 1251 ms in one of the tasks (10% faster than other participants).</div>
+        </div>
+        <div class="ach-card">
+          <div class="ach-icon">2nd Place · 2023</div>
+          <div class="ach-title">International Invention Competition for Young Muslim Scientists (IICYMS)</div>
+          <div class="ach-desc">Earned a Silver Medal at IICYMS 2023 for a Fibonacci/Golden Ratio-based music analysis project, including a research paper and live presentation to judges.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications">
+      <p class="sec-label">Learning</p>
+      <h2 class="sec-title">Certifications &amp; Bootcamps</h2>
+
+      <div>
+        <div class="cert-item">
+          <div><div class="cert-name">Data Analyst Career Track (Python) by DQLab</div><div class="cert-issuer">DQLab</div></div>
+          <div class="cert-year">November 2025</div>
+          <div class="cert-tag"><span class="tag">Bootcamp</span></div>
+        </div>
+        <div class="cert-item">
+          <div><div class="cert-name">Test of English as a Foreign Language (TOEFL) Prediction, Score 537</div><div class="cert-issuer">Daily Bahasa Inggris</div></div>
+          <div class="cert-year">October 2025</div>
+          <div class="cert-tag"><span class="tag">Certification</span></div>
+        </div>
+        <div class="cert-item">
+          <div><div class="cert-name">Microsoft Office Specialist (MOS), Microsoft Excel</div><div class="cert-issuer">PTIPD UIN Sunan Gunung Djati Bandung</div></div>
+          <div class="cert-year">November 2023</div>
+          <div class="cert-tag"><span class="tag">Certification</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrapper">
+      <span class="footer-copy">© 2026 Muhammad Raihan Nur Rasyad</span>
+      <span class="footer-back" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Back to top</span>
+    </div>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('menuBtn');
+    const drawer = document.getElementById('drawer');
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('open');
+      drawer.classList.toggle('open');
+    });
+    function closeMenu() {
+      btn.classList.remove('open');
+      drawer.classList.remove('open');
+    }
+    // Close drawer on outside click
+    document.addEventListener('click', e => {
+      if (!btn.contains(e.target) && !drawer.contains(e.target)) closeMenu();
+    });
+  </script>
+
 </body>
-
 </html>

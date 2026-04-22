@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Raihan — Portfolio</title>
   <link rel="icon" type="image/png" href="x/icon.png">
+  <title>Raihan — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
@@ -72,6 +72,7 @@
       color: var(--ink);
       text-transform: uppercase;
       font-weight: 500;
+      transition: opacity 0.3s ease;
     }
 
     /* Desktop links */
@@ -488,11 +489,11 @@
   </style>
 </head>
 <body>
-
+  
   <!-- NAV -->
   <nav>
     <div class="wrapper">
-      <span class="nav-logo">Portfolio</span>
+      <span class="nav-logo">Hello</span>
 
       <!-- Desktop -->
       <ul class="nav-links">
@@ -561,7 +562,7 @@
         </div>
         <div class="edu-year">2021 — 2025</div>
         <div class="edu-note">
-          Graduated with a 3.81 GPA (Cum Laude) and won a silver medal at the International Invention Competition for Young Muslim Scientists (IICYMS), organized by the Indonesian Young Scientist Association (IYSA) in 2023.
+        Graduated with a 3.81 GPA (Cum Laude). Undergraduate thesis: "Application of Generalized Cross Product in Solving m × n Systems of Linear Equations Using the Reduced Cramer's Rule", focused on developing Cramer's Rule and its reduced form to efficiently solve non-square linear systems using cross product operations.
         </div>
       </div>
 
@@ -705,6 +706,33 @@
     document.addEventListener('click', e => {
       if (!btn.contains(e.target) && !drawer.contains(e.target)) closeMenu();
     });
+  </script>
+
+    <script>
+    const hellos = [
+      "Hello",        // English
+      "Halo",         // Indonesian
+      "Bonjour",      // French
+      "Hola",         // Spanish
+      "Ciao",         // Italian
+      "Konnichiwa",   // Japanese
+      "Namaste",      // Hindi
+      "Merhaba",      // Turkish
+      "Olá",          // Portuguese
+      "Annyeong",     // Korean
+    ];
+
+    let i = 0;
+    const logo = document.querySelector('.nav-logo');
+
+    setInterval(() => {
+      logo.style.opacity = '0';
+      setTimeout(() => {
+        i = (i + 1) % hellos.length;
+        logo.textContent = hellos[i];
+        logo.style.opacity = '1';
+      }, 300);
+    }, 3500);
   </script>
 
 </body>
